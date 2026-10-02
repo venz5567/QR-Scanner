@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner</title>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+    <h1>QR Scanner</h1>
+    <p>Arahkan kamera ke QR Code</p>
+
+    <div id="reader" style="width: 300px;"></div>
+    <div id="result"></div>
+
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            document.getElementById('result').innerHTML = `
+                <h3>Hasil Scan:</h3>
+                <p>${decodedText}</p>
+            `;
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 }
+        );
+        html5QrcodeScanner.render(onScanSuccess);
+    </script>
+</body>
+</html>
